@@ -25,7 +25,7 @@ ATTEST_CHAIN = "EthMainnet"
 ATTEST_TOKEN = "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"
 ATTEST_THRESHOLD = 1
 
-HAVEN_AOL_DID = """type Chain = variant { EthMainnet; EthSepolia; ArbitrumOne; BaseMainnet; OptimismMainnet; };
+HAVEN_AOL_DID = """type Chain = variant { EthMainnet; EthSepolia; ArbitrumOne; BaseMainnet; OptimismMainnet; RobinhoodMainnet; RobinhoodTestnet; };
 type AttestRequest = record {
   chain : Chain; tokenAddress : text; threshold : nat; cidHash : text; evmAddress : text;
   nonce : nat; signature : blob; eip712ChainId : nat; eip712VerifyingContract : text;

@@ -4,6 +4,8 @@ type Chain = variant {
   ArbitrumOne;
   BaseMainnet;
   OptimismMainnet;
+  RobinhoodMainnet;
+  RobinhoodTestnet;
 };
 
 type GateRequest = record {

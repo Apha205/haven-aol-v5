@@ -45,6 +45,8 @@ const ChainVariant = IDL.Variant({
   ArbitrumOne: IDL.Null,
   BaseMainnet: IDL.Null,
   OptimismMainnet: IDL.Null,
+  RobinhoodMainnet: IDL.Null,
+  RobinhoodTestnet: IDL.Null,
 });
 
 const GateRequestType = IDL.Record({

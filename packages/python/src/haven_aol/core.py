@@ -19,6 +19,8 @@ VALID_CHAINS = frozenset({
     "ArbitrumOne",
     "BaseMainnet",
     "OptimismMainnet",
+    "RobinhoodMainnet",
+    "RobinhoodTestnet",
 })
 
 # Default VetKD context — must match canister and TypeScript package (protocol v1).

@@ -4,7 +4,9 @@ export type Chain =
   | "EthSepolia"
   | "ArbitrumOne"
   | "BaseMainnet"
-  | "OptimismMainnet";
+  | "OptimismMainnet"
+  | "RobinhoodMainnet"
+  | "RobinhoodTestnet";
 
 export const VALID_CHAINS: readonly Chain[] = [
   "EthMainnet",
@@ -12,6 +14,8 @@ export const VALID_CHAINS: readonly Chain[] = [
   "ArbitrumOne",
   "BaseMainnet",
   "OptimismMainnet",
+  "RobinhoodMainnet",
+  "RobinhoodTestnet",
 ];
 
 /** Parsed gate metadata from the upload-side JSON. */

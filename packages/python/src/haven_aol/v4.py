@@ -108,6 +108,8 @@ VALID_CHAINS = frozenset({
     "ArbitrumOne",
     "BaseMainnet",
     "OptimismMainnet",
+    "RobinhoodMainnet",
+    "RobinhoodTestnet",
 })
 _TOKEN_ADDR_RE = re.compile(r"^0x[0-9a-fA-F]{40}$")
 _BASE64_RE = re.compile(r"^[A-Za-z0-9+/]+={0,2}$")

@@ -279,7 +279,7 @@ describe("TC-7: Multi-Chain Derivation Hash Divergence", () => {
     const threshold = BigInt("1000000");
     const cid = "QmTestCid123";
 
-    const chains = ["EthMainnet", "ArbitrumOne", "BaseMainnet", "OptimismMainnet", "EthSepolia"];
+    const chains = ["EthMainnet", "ArbitrumOne", "BaseMainnet", "OptimismMainnet", "EthSepolia", "RobinhoodMainnet", "RobinhoodTestnet"];
     const hashes = new Set();
 
     for (const chain of chains) {

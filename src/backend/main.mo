@@ -29,6 +29,10 @@ persistent actor {
     #ArbitrumOne : ?[L2MainnetService];
     #BaseMainnet : ?[L2MainnetService];
     #OptimismMainnet : ?[L2MainnetService];
+    #Custom : {
+      chainId : Nat64;
+      services : [{ url : Text; headers : ?[{ name : Text; value : Text }] }];
+    };
   };
 
   type EthMainnetService = {
@@ -217,6 +221,8 @@ persistent actor {
     #ArbitrumOne;
     #BaseMainnet;
     #OptimismMainnet;
+    #RobinhoodMainnet;
+    #RobinhoodTestnet;
   };
 
   public type BalanceError = {
@@ -352,6 +358,8 @@ persistent actor {
               wrappedNative = "0xfFf9976782d46CC05630D1f6eBAb18b2324d6B14";
             };
           };
+          case (#RobinhoodMainnet) { null };
+          case (#RobinhoodTestnet) { null };
         };
       };
     };
@@ -522,6 +530,23 @@ persistent actor {
       case (#ArbitrumOne) { #ArbitrumOne(null) };
       case (#BaseMainnet) { #BaseMainnet(null) };
       case (#OptimismMainnet) { #OptimismMainnet(null) };
+      case (#RobinhoodMainnet) {
+        #Custom({
+          chainId = 4663 : Nat64;
+          services = [
+            { url = "https://rpc.mainnet.chain.robinhood.com"; headers = null },
+            { url = "https://robinhood-rpc.publicnode.com"; headers = null },
+          ];
+        })
+      };
+      case (#RobinhoodTestnet) {
+        #Custom({
+          chainId = 46630 : Nat64;
+          services = [
+            { url = "https://rpc.testnet.chain.robinhood.com"; headers = null },
+          ];
+        })
+      };
     };
   };
 
@@ -532,6 +557,8 @@ persistent actor {
       case (#ArbitrumOne) { "ArbitrumOne" };
       case (#BaseMainnet) { "BaseMainnet" };
       case (#OptimismMainnet) { "OptimismMainnet" };
+      case (#RobinhoodMainnet) { "RobinhoodMainnet" };
+      case (#RobinhoodTestnet) { "RobinhoodTestnet" };
     };
   };
 
@@ -1204,9 +1231,15 @@ persistent actor {
 
     let calldata = "0x70a08231000000000000000000000000" # walletHex;
 
+    let (rpcTotal, rpcMin) = switch (chain) {
+      case (#RobinhoodMainnet) { (?1 : ?Nat8, 1 : Nat8) };
+      case (#RobinhoodTestnet) { (?1 : ?Nat8, 1 : Nat8) };
+      case _ { (?3 : ?Nat8, 2 : Nat8) };
+    };
+
     let rpcConfig : RpcConfig = {
       responseSizeEstimate = null;
-      responseConsensus = ?#Threshold({ total = ?3 : ?Nat8; min = 2 : Nat8 });
+      responseConsensus = ?#Threshold({ total = rpcTotal; min = rpcMin });
     };
 
     let callArgs : CallArgs = {
@@ -1799,9 +1832,15 @@ persistent actor {
       case (#ok(_)) {};
     };
 
+    let (rpcTotal, rpcMin) = switch (chain) {
+      case (#RobinhoodMainnet) { (?1 : ?Nat8, 1 : Nat8) };
+      case (#RobinhoodTestnet) { (?1 : ?Nat8, 1 : Nat8) };
+      case _ { (?3 : ?Nat8, 2 : Nat8) };
+    };
+
     let rpcConfig : RpcConfig = {
       responseSizeEstimate = null;
-      responseConsensus = ?#Threshold({ total = ?3 : ?Nat8; min = 2 : Nat8 });
+      responseConsensus = ?#Threshold({ total = rpcTotal; min = rpcMin });
     };
 
     let callArgs : CallArgs = {
